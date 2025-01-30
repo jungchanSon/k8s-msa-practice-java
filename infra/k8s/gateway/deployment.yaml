@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway-service-container
-          image: infra-gateway
-          imagePullPolicy: Never
+          image: rnrmf/kiwi-gateway:latest
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 8080
