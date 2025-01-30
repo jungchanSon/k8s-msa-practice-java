@@ -20,4 +20,4 @@ spec:
             - containerPort: 8090
           env:
             - name: USER_MYSQL_URL
-              value: mysql.default.svc.cluster.local
+              value: mysql-0.mysql.default.svc.cluster.local
