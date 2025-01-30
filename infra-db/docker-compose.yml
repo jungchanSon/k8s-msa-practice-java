@@ -1,0 +1,68 @@
+networks:
+  kiwi-service-network:
+    driver: bridge
+    external: true
+
+services:
+  kiwi-db-order:
+    container_name: kiwi-db-order
+    image: mysql:8.0.30
+    volumes:
+      - ./db/order/conf.d:/etc/mysql/conf.d
+      - ./db/order/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    environment:
+#      - MYSQL_DATABASE=order
+      - MYSQL_DATABASE=dev
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    networks:
+      - kiwi-service-network
+  kiwi-db-shop:
+    container_name: kiwi-db-shop
+    image: mysql:8.0.30
+    volumes:
+      - ./db/shop/conf.d:/etc/mysql/conf.d
+      - ./db/shop/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3316:3306"
+    environment:
+      - MYSQL_DATABASE=shop
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    networks:
+      - kiwi-service-network
+
+  kiwi-db-ordershop:
+    container_name: kiwi-db-ordershop
+    image: mysql:8.0.30
+    volumes:
+      - ./db/ordershop/conf.d:/etc/mysql/conf.d
+      - ./db/ordershop/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3326:3306"
+    environment:
+      - MYSQL_DATABASE=ordershop
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    networks:
+      - kiwi-service-network
