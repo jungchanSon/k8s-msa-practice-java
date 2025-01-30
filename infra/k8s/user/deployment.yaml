@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service-container
-          image: user-service-app
-          imagePullPolicy: Never
+          image: rnrmf/user-service-app
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090
