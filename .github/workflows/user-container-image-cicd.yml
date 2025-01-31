@@ -42,7 +42,7 @@ jobs:
           echo "${{ secrets.user_application_secret }}" > ./user-service/src/main/resources/secret/application-local.yml 
 
       - name: Build java app
-        run: ~/gradlew :user-service:build
+        run: ./gradlew :user-service:build
 
       - name: Login docker hub
         uses: docker/login-action@v2
