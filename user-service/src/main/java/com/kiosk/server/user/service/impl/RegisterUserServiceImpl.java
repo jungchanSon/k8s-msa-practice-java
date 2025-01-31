@@ -23,7 +23,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
         User user = User.create(email, password);
 
-        userRepository.registerUser(user);
+        userRepository.registerUser(user);;
 
     }
 
