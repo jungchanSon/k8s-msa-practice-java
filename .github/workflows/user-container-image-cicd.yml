@@ -33,17 +33,11 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
-      - name: test ls
-        run: ls
-
-      - name: test lsls
-        run: ls user-service
-
       - name: Copy create files
         run: |
-          touch ./user-service/src/resources/application.yml 
+          touch ./user-service/src/main/resources/application.yml 
           echo "${{ secrets.user_application }}" > ./user-service/src/resources/application.yml
-          touch ./user-service/src/resources/secret/application-local.yml
+          touch ./user-service/src/main/resources/secret/application-local.yml
           echo "${{ secrets.user_application_secret }}" > ./user-service/src/resources/secret/application-local.yml 
 
       - name: Build java app
