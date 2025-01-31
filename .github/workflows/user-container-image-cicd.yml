@@ -32,6 +32,8 @@ jobs:
           key:  gradle-${{ runner.os }}-${{ hashfiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}
+      - name: test ls
+        run: ls
 
       - name: Copy create files
         run: |
