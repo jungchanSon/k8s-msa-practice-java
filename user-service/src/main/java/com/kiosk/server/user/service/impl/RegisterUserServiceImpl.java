@@ -18,7 +18,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     @Transactional
     public void doService(String email, String password) {
 
-//        checkEmailDuplication(email);
+        checkEmailDuplication(email);
         verifyFormat(email, password);
 
         User user = User.create(email, password);
