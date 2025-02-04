@@ -66,7 +66,9 @@ jobs:
         env:
           IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
         with:
-          cmd: yq eval -i '.image.tag = env(IMAGE_TAG)' './infra/helm-chart/gateway/values.yaml'
+          cmd: |
+            ls -al
+            yq eval -i '.image.tag = env(IMAGE_TAG)' 'infra/helm-chart/gateway/values.yaml'
       - name: Commit helm values
         env:
           IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
