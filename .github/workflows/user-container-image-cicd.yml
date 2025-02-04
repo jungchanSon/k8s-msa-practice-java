@@ -41,11 +41,11 @@ jobs:
 
       - name: Copy create files
         run: |
-          touch ./user-service/src/main/resources/application.yml 
-          echo "${{ secrets.user_application }}" > ./user-service/src/main/resources/application.yml
+#          touch ./user-service/src/main/resources/application.yml
+#          echo "${{ secrets.user_application }}" > ./user-service/src/main/resources/application.yml
           mkdir -p ./user-service/src/main/resources/secret
           touch ./user-service/src/main/resources/secret/application-local.yml
-          echo "${{ secrets.user_application_secret }}" > ./user-service/src/main/resources/secret/application-local.yml 
+          echo "${{ secrets.user_application_secret }}" > ./user-service/src/main/resources/secret/application-local.yml
 
       - name: Build java app
         run: |
