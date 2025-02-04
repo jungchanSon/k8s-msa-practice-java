@@ -67,7 +67,7 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
-            yq eval -i '.image.tag = "${{ needs.ci.outputs.IMAGE_TAG }}"' 'infra/helm-chart/gateway/values.yaml'
+            yq eval -i '.image.tag = "${{ needs.ci.outputs.IMAGE_TAG}}"' 'infra/helm-chart/gateway/values.yaml'
 
       - name: Commit helm values
         env:
