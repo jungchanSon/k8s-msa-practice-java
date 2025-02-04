@@ -29,16 +29,6 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Cache gradle
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key:  gradle-${{ runner.os }}-${{ hashfiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}
-
       - name: Copy create files
         run: |
           mkdir -p ./common/src/main/resources
