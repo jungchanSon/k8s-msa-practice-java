@@ -4,10 +4,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - infra/helm-chart/**/values.yaml
-#    paths:
-#      - infra-gateway/**
+    paths:
+      - infra-gateway/**
 
 jobs:
   ci:
