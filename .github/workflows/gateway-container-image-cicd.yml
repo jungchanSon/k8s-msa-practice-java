@@ -16,8 +16,7 @@ jobs:
     steps:
       - name: Set image tag
         id: image-tag
-        run: |
-          run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+        run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
