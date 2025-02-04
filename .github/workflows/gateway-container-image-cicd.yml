@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-#    paths:
-#      - infra-gateway/**
+    paths:
+      - infra-gateway/**
 
 jobs:
   ci:
@@ -65,11 +65,9 @@ jobs:
 
       - name: Set image tag in helm
         uses: mikefarah/yq@master
-        env:
-          IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
         with:
           cmd: |
-            yq eval -i '.image.tag = env(IMAGE_TAG)' 'infra/helm-chart/gateway/values.yaml'
+            yq eval -i '.image.tag = "${{ needs.ci.outputs.IMAGE_TAG }}"' 'infra/helm-chart/gateway/values.yaml'
 
       - name: Commit helm values
         env:
