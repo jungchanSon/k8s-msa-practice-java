@@ -1,12 +1,5 @@
-#spring:
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: service-user-route
-#          uri: http://user-service-app:8085
-#          predicates:
-#            - Path=/user/**
-#            - Path=/auth/**
-#
-#server:
-#  port: 8080
+spring:
+  main:
+    web-application-type: reactive
+server:
+  port: 8080
