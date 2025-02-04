@@ -3,7 +3,7 @@ image:
   repository: rnrmf
   name: user-service-app
   pullPolicy: IfNotPresent
-  tag: "22b7c070f207850bab1cd4fe5a34a043d4a1b5ee"
+  tag: "8ffa808cc89fdd66d33e1af791fd969fd0e7ab7e"
 containerPort: 8090
 springEnv:
   userMysqlUrl: mysql-0.mysql.default.svc.cluster.local
