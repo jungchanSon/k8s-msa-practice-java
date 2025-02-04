@@ -36,7 +36,7 @@ spec:
       volumes:
         - name: init-table
           configMap:
-            name: mysql-init-script
+            name: initdb-config-user
   volumeClaimTemplates:
     - metadata:
         name: volume-mysql
