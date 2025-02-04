@@ -1,44 +1,33 @@
 replicaCount: 1
-
 image:
   repository: rnrmf
   name: user-service-app
   pullPolicy: IfNotPresent
-  tag: "latest"
-
+  tag: "7e3616d99da57943d1ae12d5a2465552dff84a3b"
 containerPort: 8090
 springEnv:
   userMysqlUrl: mysql-0.mysql.default.svc.cluster.local
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
 serviceAccount:
   create: true
   automount: true
   annotations: {}
   name: ""
-
 podAnnotations: {}
 podLabels: {}
-
 podSecurityContext: {}
-
 securityContext: {}
-
 mysql:
   host: mysql
   port: 3306
   database: dev
   username: root
   password: root
-
 service:
   type: LoadBalancer
   port: 8090
-
-
 springApp:
   env:
     SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/dev"
@@ -54,9 +43,7 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
 resources: {}
-
 livenessProbe:
   httpGet:
     path: /
@@ -65,21 +52,13 @@ readinessProbe:
   httpGet:
     path: /
     port: http
-
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-
 volumes: []
-
-
 volumeMounts: []
-
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
