@@ -1,4 +1,4 @@
-name: user-docker build and push
+name: user service ci-cd
 
 on:
   push:

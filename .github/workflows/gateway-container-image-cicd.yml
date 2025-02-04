@@ -1,4 +1,4 @@
-name: user-docker build and push
+name: gateway ci-cd
 
 on:
   push:
