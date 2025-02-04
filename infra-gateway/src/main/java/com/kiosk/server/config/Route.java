@@ -15,7 +15,12 @@ public class Route {
                 .route(
                         r -> r.path("/user/**")
                                 .uri("http://user-service-app:8090")
-                ).build();
+                )
+                .route(
+                        r -> r.path("/gate/**")
+                                .uri("http://user-service-app:8090")
+                )
+                .build();
 
     }
 }
