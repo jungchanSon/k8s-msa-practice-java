@@ -8,7 +8,7 @@ on:
       - user-service/**
 
 jobs:
-  ci-cd:
+  ci:
     runs-on: ubuntu-latest
     env:
       working-directory: ./user-service
