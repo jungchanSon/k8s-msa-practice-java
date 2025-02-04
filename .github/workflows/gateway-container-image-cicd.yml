@@ -8,12 +8,17 @@ on:
       - infra-gateway/**
 
 jobs:
-  ci-cd:
+  ci:
     runs-on: ubuntu-latest
     env:
       working-directory: ./infra-gateway
 
     steps:
+      - name: Set image tag
+        id: image-tag
+        run: |
+          echo ::set-output name=IMAGE_TAG::${{ github.sha }}
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -47,8 +52,28 @@ jobs:
       - name: Build docker container
         working-directory: ${{ env.working-directory }}
         run: |
-          docker build -t ${{ secrets.docker_username }}/${{ secrets.gateway_repository }}:${{ secrets.default_service_version }} .
+          docker build -t ${{ secrets.docker_username }}/${{ secrets.gateway_repository }}:${{ steps.image-tag.outputs.IMAGE_TAG }} .
 
       - name: docker build push
         run: |
-          docker push ${{ secrets.docker_username }}/${{ secrets.gateway_repository }}:${{ secrets.default_service_version }}
+          docker push ${{ secrets.docker_username }}/${{ secrets.gateway_repository }}:${{ steps.image-tag.outputs.IMAGE_TAG }}
+  cd:
+    needs: [ ci ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set image tag in helm
+        uses: mikefarah/yq@master
+        env:
+          IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
+        with:
+          cmd: yq eval -i '.image.tag = env(IMAGE_TAG)' './infra/helm-chart/gateway/values.yaml'
+      - name: Commit helm values
+        env:
+          IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
+        run: |
+          cd ./infra/helm-chart/gateway
+          git config --global user.email "rnrmfjc@gmail.com"
+          git config --global user.name "jungchanSon"
+          
+          git add values.yaml
+          git commit --message "ci: update gateway image tag to $IMAGE_TAG"
