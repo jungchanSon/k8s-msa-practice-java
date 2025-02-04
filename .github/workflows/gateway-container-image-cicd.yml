@@ -17,7 +17,7 @@ jobs:
       - name: Set image tag
         id: image-tag
         run: |
-          echo ::set-output name=IMAGE_TAG::${{ github.sha }}
+          run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
         with:
           cmd: |
             ls -al
-            yq eval -i '.image.tag = env(IMAGE_TAG)' 'infra/helm-chart/gateway/values.yaml'
+
       - name: Commit helm values
         env:
           IMAGE_TAG: ${{ needs.ci.outputs.IMAGE_TAG }}
