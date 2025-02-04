@@ -3,7 +3,7 @@ image:
   repository: rnrmf
   name: kiwi-gateway
   pullPolicy: IfNotPresent
-  tag: "a4278d11b62d536119c8b6b0ca290952d1384da4"
+  tag: "dba45192f6b096ed0fcd630dee8628dd14d9512a"
 containerPort: 8080
 protocol: TCP
 imagePullSecrets: []
