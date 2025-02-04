@@ -1,12 +1,12 @@
 rootProject.name = 'kiosk'
 
 include(
-        "user-profile-service",
+//        "user-profile-service",
         "user-service",
-        "order-service",
-        "adjustment-service",
-        "payment-service",
+//        "order-service",
+//        "adjustment-service",
+//        "payment-service",
 
-        "infra-eureka",
+//        "infra-eureka",
         "infra-gateway",
 )
