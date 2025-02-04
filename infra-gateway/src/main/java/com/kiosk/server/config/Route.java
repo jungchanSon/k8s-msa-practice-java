@@ -13,10 +13,6 @@ public class Route {
     public RouteLocator cRoute(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(
-                        r -> r.path("/user/**")
-                                .uri("http://user-service-app:8090")
-                )
-                .route(
                         r -> r.path("/gate/**")
                                 .uri("http://user-service-app:8090")
                 )
