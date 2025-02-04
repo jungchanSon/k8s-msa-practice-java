@@ -79,3 +79,9 @@ jobs:
           
           git add values.yaml
           git commit --message "ci: update gateway image tag to $IMAGE_TAG"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.REPO_PAT }}
+          repository: jungchanSon/k8s-msa-practice-java
