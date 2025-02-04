@@ -1,4 +1,4 @@
-tasks.getByName("bootJar") {
+tasks.named("bootJar") {
     enabled = true
 }
 
@@ -7,6 +7,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 
+    // MySQL
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     // Lombok
@@ -16,12 +17,9 @@ dependencies {
     // TSID
     implementation 'com.github.f4b6a3:tsid-creator:5.2.6'
 
-    // JJWT
-    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    api project(":common")
 }

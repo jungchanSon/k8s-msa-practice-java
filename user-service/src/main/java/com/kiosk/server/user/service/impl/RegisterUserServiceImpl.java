@@ -1,13 +1,13 @@
 package com.kiosk.server.user.service.impl;
 
+import com.kiosk.server.common.exception.custom.BadRequestException;
 import com.kiosk.server.common.exception.custom.ConflictException;
-import com.kiosk.server.common.exception.custom.InvalidFormatException;
 import com.kiosk.server.user.domain.User;
 import com.kiosk.server.user.domain.UserRepository;
 import com.kiosk.server.user.service.RegisterUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +15,6 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
     private final UserRepository userRepository;
 
-    @Transactional
     public void doService(String email, String password) {
 
         checkEmailDuplication(email);
@@ -50,12 +49,12 @@ public class RegisterUserServiceImpl implements RegisterUserService {
         String emailRegex = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
         String passRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*_\\-+=`|\\\\(){}\\[\\]:;\"'<>,.?/]).{8,16}$";
 
-        if (!email.matches(emailRegex)) {
-            throw new InvalidFormatException("Email format is incorrect");
+        if (email == null || !email.matches(emailRegex)) {
+            throw new BadRequestException("Invalid Email Format");
         }
 
-        if (!password.matches(passRegex)) {
-            throw new InvalidFormatException("Invalid Password");
+        if (password == null || !password.matches(passRegex)) {
+            throw new BadRequestException("Invalid Password Format");
         }
     }
 
