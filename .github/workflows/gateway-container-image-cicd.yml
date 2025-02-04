@@ -60,6 +60,9 @@ jobs:
     needs: [ ci ]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set image tag in helm
         uses: mikefarah/yq@master
         env:
@@ -67,6 +70,7 @@ jobs:
         with:
           cmd: |
             ls -al
+#            yq eval -i '.image.tag = env(IMAGE_TAG)' 'infra/helm-chart/gateway/values.yaml'
 
       - name: Commit helm values
         env:
